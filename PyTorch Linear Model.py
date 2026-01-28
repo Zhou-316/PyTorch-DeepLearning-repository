@@ -1,5 +1,5 @@
 import torch
-
+import matplotlib.pyplot as plt
 # Mini-batch Data
 x = torch.tensor([[1.0], [2.0], [3.0]])
 y = torch.tensor([[2.0], [4.0], [6.0]])
@@ -39,11 +39,12 @@ optimizer = torch.optim.SGD(model.parameters(), lr=0.01)  ##随机梯度下降�
 #   model.parameters()会返回模型中所有需要优化的参数，这里就是线性层的权重和偏置
 #   model.parameters()是nn.Module类中的一个返回一个生成器（generator），里面包含模型中所有 nn.Parameter 类型的张量（即需要通过反向传播更新的权重和偏置）。
 #   事实上，存在不同算法的优化器，比如Adam、RMSprop等
-
+losses=[]
 #   下面正式训练，四个过程：前馈、计算损失、反向传播、更新参数   
 for epoch in range(800):
     y_pred=model(x)
     loss=criterion(y_pred, y)               ##计算损失
+    losses.append(loss.item())              ##记录损失值用于画图
     print("epoch", epoch, "loss:", loss.item())
     optimizer.zero_grad()                   ##清零梯度
     loss.backward()                         ##反向传播计算梯度
@@ -52,3 +53,12 @@ print("w:", model.linear.weight.item(), "b:", model.linear.bias.item())
 x_test = torch.tensor([[4.0]])
 y_test = model(x_test)
 print("prediction after training:", 4, y_test.item())
+
+#画图
+plt.figure(figsize=(10, 5))
+plt.plot(range(1, len(losses) + 1), losses, 'b', label='Training loss')
+plt.title('Training Loss per Epoch')
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
