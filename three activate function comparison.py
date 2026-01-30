@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu') ##启用GPU，CUDA加速
 print("Using device:", device)
-#注：为什么这里先用了CUDA而不是Mini-batch来加速呢？因为我想用hh，dataloader的用法后面才会学到
+
 # 加载数据集
 xy = np.loadtxt('diabetes.csv', delimiter=',', dtype=np.float32)
 x_data = torch.from_numpy(xy[:, :-1])
