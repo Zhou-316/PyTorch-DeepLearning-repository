@@ -23,7 +23,7 @@ This repository is a collection of beginner-friendly PyTorch scripts that demons
 - Python 3.x with the following libraries: `torch`, `torchvision` (for MNIST scripts), `numpy`, and `matplotlib`.
 - Run any script directly, e.g.:
   - `python "CUDAtest.py"` to inspect CUDA support.
-  - `python "MNIST training.py"` or `python "MINST training2.py"` to train MNIST models (downloads data to `./data`; the CNN script’s filename keeps the “MINST” typo).
+  - `python "MNIST training.py"` or `python "MINST training2.py"` to train MNIST models (downloads data to `./data`; the CNN script’s filename keeps the “MINST” spelling).
   - `python "Dataloader and dataset.py"` to train an MLP on `diabetes.csv` using a DataLoader and optional GPU acceleration.
 - Most training scripts print periodic loss/accuracy and, where applicable, display matplotlib charts.
 
